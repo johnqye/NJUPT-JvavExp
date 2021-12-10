@@ -1,0 +1,20 @@
+template <class FwdIt, class _Tp, class Pred = std::less<_Tp>>
+FwdIt lower_bound(FwdIt first, FwdIt last, const _Tp& value, Pred comp = Pred())
+{
+    typedef typename iterator_traits<FwdIt>::difference_type difference_type;
+    difference_type len = std::distance(first, last);
+    while (len != 0)
+    {
+        difference_type l2 = len / 2;
+        FwdIt m = first;
+        std::advance(m, l2);
+        if (comp(*m, value))
+        {
+            first = ++m;
+            len -= l2 + 1;
+        }
+        else
+            len = l2;
+    }
+    return first;
+}
