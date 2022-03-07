@@ -20,7 +20,7 @@ public class ArrayWorst {
             int step = len / 2;
             if (array[low + step] < value) {
                 len -= step + 1;
-                low += ++step;
+                low += step + 1;
             } else len = step;
         }
         return low;
